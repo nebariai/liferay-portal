@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.service.change.tracking.CTService;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -281,8 +280,7 @@ public class CTPublishBackgroundTaskExecutor
 					JSONUtil.put(
 						"ctCollectionId", fromCTCollectionId
 					).put(
-						"ctCollectionName",
-						HtmlUtil.escape(fromCTCollection.getName())
+						"ctCollectionName", fromCTCollection.getName()
 					).put(
 						"notificationType",
 						UserNotificationDefinition.
