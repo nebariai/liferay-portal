@@ -211,11 +211,15 @@ public class ComboServletTest {
 
 	@Test
 	public void testServiceWithNoncanonicalPaths() throws Exception {
-		_testService("/js/aui.js", "/./js/aui.js", _portalServletContext);
-		_testService("/js/aui.js", "/js/./aui.js", _portalServletContext);
-		_testService("/js/aui.js", "/js//aui.js", _portalServletContext);
-		_testService("/js/aui.js", "/js/down/../aui.js", _portalServletContext);
 		_testService(null, "/../js/aui.js", _portalServletContext);
+
+		_testService("/js/aui.js", "/./js/aui.js", _portalServletContext);
+
+		_testService("/js/aui.js", "/js/./aui.js", _portalServletContext);
+
+		_testService("/js/aui.js", "/js//aui.js", _portalServletContext);
+
+		_testService("/js/aui.js", "/js/down/../aui.js", _portalServletContext);
 	}
 
 	@Test
