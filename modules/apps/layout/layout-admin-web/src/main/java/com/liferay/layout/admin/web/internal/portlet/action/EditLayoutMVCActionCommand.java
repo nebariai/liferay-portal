@@ -221,8 +221,7 @@ public class EditLayoutMVCActionCommand extends BaseMVCActionCommand {
 					WorkflowConstants.STATUS_DRAFT, serviceContext);
 			}
 
-			String redirect = _portal.escapeRedirect(
-				ParamUtil.getString(actionRequest, "redirect"));
+			String redirect = ParamUtil.getString(actionRequest, "redirect");
 
 			if (Validator.isNull(redirect) ||
 				(redirect.contains(oldFriendlyURL) &&
