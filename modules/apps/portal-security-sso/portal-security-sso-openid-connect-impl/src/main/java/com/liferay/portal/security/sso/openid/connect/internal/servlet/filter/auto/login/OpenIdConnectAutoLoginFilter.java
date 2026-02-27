@@ -89,10 +89,8 @@ public class OpenIdConnectAutoLoginFilter extends AutoLoginFilter {
 				userId -> _autoLoginUser(
 					httpServletRequest, httpServletResponse, userId));
 		}
-		catch (IllegalArgumentException | StrangersNotAllowedException |
+		catch (StrangersNotAllowedException |
 			   UserEmailAddressException.MustNotUseCompanyMx exception) {
-
-			_log.error(exception);
 
 			Class<?> clazz = exception.getClass();
 
