@@ -145,7 +145,7 @@ public class AttachmentManagerImpl implements AttachmentManager {
 			_dlAppLocalService.fetchFileEntryByExternalReferenceCode(
 				groupId, externalReferenceCode);
 
-		if (fileEntry != null && companyId == fileEntry.getCompanyId()) {
+		if (fileEntry != null) {
 			return fileEntry;
 		}
 
@@ -182,7 +182,11 @@ public class AttachmentManagerImpl implements AttachmentManager {
 			_dlAppLocalService.fetchFileEntryByExternalReferenceCode(
 				groupId, externalReferenceCode);
 
-		if (fileEntry != null && companyId == fileEntry.getCompanyId()) {
+		if (companyId != fileEntry.getCompanyId()) {
+			throw new NoSuchFileEntryException();
+		}
+
+		if (fileEntry != null) {
 			return fileEntry;
 		}
 
