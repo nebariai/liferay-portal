@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermi
 import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService;
 import com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -353,7 +352,7 @@ public class CalendarUtil {
 					calendar.getCalendarId(), themeDisplay.getScopeGroupId());
 			}
 		).put(
-			"name", HtmlUtil.escape(calendar.getName(themeDisplay.getLocale()))
+			"name", calendar.getName(themeDisplay.getLocale())
 		).put(
 			"permissions",
 			_getPermissionsJSONObject(
