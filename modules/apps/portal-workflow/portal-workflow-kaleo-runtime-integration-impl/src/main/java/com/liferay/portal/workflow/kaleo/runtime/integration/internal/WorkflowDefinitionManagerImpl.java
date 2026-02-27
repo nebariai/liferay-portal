@@ -277,8 +277,24 @@ public class WorkflowDefinitionManagerImpl
 			OrderByComparator<WorkflowDefinition> orderByComparator)
 		throws WorkflowException {
 
-		return _getWorkflowDefinitions(
-			companyId, false, name, orderByComparator);
+		try {
+			List<KaleoDefinitionVersion> kaleoDefinitionVersions =
+				_kaleoDefinitionVersionService.getKaleoDefinitionVersions(
+					companyId, name);
+
+			int size = kaleoDefinitionVersions.size();
+
+			return _toWorkflowDefinitions(
+				kaleoDefinitionVersions.toArray(
+					new KaleoDefinitionVersion[size]),
+				orderByComparator);
+		}
+		catch (WorkflowException workflowException) {
+			throw workflowException;
+		}
+		catch (Exception exception) {
+			throw new WorkflowException(exception);
+		}
 	}
 
 	@Override
@@ -310,16 +326,6 @@ public class WorkflowDefinitionManagerImpl
 		throws WorkflowException {
 
 		return _getLatestWorkflowDefinition(companyId, true, name);
-	}
-
-	@Override
-	public List<WorkflowDefinition> liberalGetWorkflowDefinitions(
-			long companyId, String name, int start, int end,
-			OrderByComparator<WorkflowDefinition> orderByComparator)
-		throws WorkflowException {
-
-		return _getWorkflowDefinitions(
-			companyId, true, name, orderByComparator);
 	}
 
 	@Override
@@ -511,35 +517,6 @@ public class WorkflowDefinitionManagerImpl
 						name, serviceContext),
 					() -> _kaleoDefinitionService.getKaleoDefinition(
 						name, serviceContext)));
-		}
-		catch (WorkflowException workflowException) {
-			throw workflowException;
-		}
-		catch (Exception exception) {
-			throw new WorkflowException(exception);
-		}
-	}
-
-	private List<WorkflowDefinition> _getWorkflowDefinitions(
-			long companyId, boolean liberal, String name,
-			OrderByComparator<WorkflowDefinition> orderByComparator)
-		throws WorkflowException {
-
-		try {
-			List<KaleoDefinitionVersion> kaleoDefinitionVersions = _get(
-				liberal,
-				() ->
-					_kaleoDefinitionVersionLocalService.
-						getKaleoDefinitionVersions(companyId, name),
-				() -> _kaleoDefinitionVersionService.getKaleoDefinitionVersions(
-					companyId, name));
-
-			int size = kaleoDefinitionVersions.size();
-
-			return _toWorkflowDefinitions(
-				kaleoDefinitionVersions.toArray(
-					new KaleoDefinitionVersion[size]),
-				orderByComparator);
 		}
 		catch (WorkflowException workflowException) {
 			throw workflowException;
