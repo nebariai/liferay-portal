@@ -12,7 +12,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -66,8 +65,7 @@ public class PortletBackLinkProductNavigationControlMenuEntry
 
 		if (Validator.isNotNull(urlBackTitle)) {
 			return _language.format(
-				locale, "go-to-x",
-				new String[] {HtmlUtil.escape(urlBackTitle)});
+				locale, "go-to-x", new String[] {urlBackTitle});
 		}
 
 		return _language.get(locale, "back");
