@@ -1780,8 +1780,8 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 			return user;
 		}
 		else if ((modifiedDate == null) && !isNew) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
+			if (_log.isInfoEnabled()) {
+				_log.info(
 					"Skipping user " + user.getEmailAddress() +
 						" because the LDAP entry was never modified");
 			}
