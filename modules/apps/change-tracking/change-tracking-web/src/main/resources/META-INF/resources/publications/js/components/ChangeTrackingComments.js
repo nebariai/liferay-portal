@@ -99,9 +99,7 @@ export default function ChangeTrackingComments({
 			ctEntryId,
 		});
 
-		fetch(portletURL, {
-			method: 'post',
-		})
+		fetch(portletURL)
 			.then((response) => response.json())
 			.then((json) => {
 				if (!json.comments) {
@@ -137,9 +135,7 @@ export default function ChangeTrackingComments({
 			ctEntryId,
 		});
 
-		fetch(portletURL, {
-			method: 'post',
-		})
+		fetch(portletURL)
 			.then((response) => response.json())
 			.then((json) => {
 				if (!json.comments) {
@@ -173,9 +169,7 @@ export default function ChangeTrackingComments({
 			value: inputValue,
 		});
 
-		fetch(portletURL.toString(), {
-			method: 'post',
-		})
+		fetch(portletURL.toString())
 			.then((response) => response.json())
 			.then((json) => {
 				setDeleting(0);
@@ -217,9 +211,7 @@ export default function ChangeTrackingComments({
 			value: newValue,
 		});
 
-		fetch(portletURL, {
-			method: 'post',
-		})
+		fetch(portletURL)
 			.then((response) => response.json())
 			.then((json) => {
 				setDeleting(0);
